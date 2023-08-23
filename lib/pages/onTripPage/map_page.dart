@@ -688,8 +688,17 @@ class _MapsState extends State<Maps>
                                                                               .latitude,
                                                                           _centerLocation
                                                                               .longitude);
-                                                                      inspect(
-                                                                          val);
+                                                                      // inspect({
+                                                                      //   _centerLocation
+                                                                      //       .latitude,
+                                                                      //   _centerLocation
+                                                                      //       .longitude
+                                                                      // });
+                                                                      // inspect(addressList
+                                                                      //       .where((element) =>
+                                                                      //           element.id ==
+                                                                      //           'pickup')
+                                                                      //       .isNotEmpty);
                                                                       setState(
                                                                           () {
                                                                         if (addressList
@@ -706,10 +715,10 @@ class _MapsState extends State<Maps>
                                                                               _centerLocation.latitude,
                                                                               _centerLocation.longitude);
                                                                         } else {
-                                                                          // addressList.add(AddressList(
-                                                                          //     id: 'pickup',
-                                                                          //     address: val,
-                                                                          //     latlng: LatLng(_centerLocation.latitude, _centerLocation.longitude)));
+                                                                          addressList.add(AddressList(
+                                                                              id: 'pickup',
+                                                                              address: val,
+                                                                              latlng: LatLng(_centerLocation.latitude, _centerLocation.longitude)));
                                                                         }
                                                                       });
                                                                       // addToast();

@@ -40,7 +40,7 @@ bool internet = true;
 //base url
 String url =
     'http://taxiapp.thiqatech.com/public/'; //please add '/' at the end of the url as 'https://yourwebsite.com/'
-String mapkey = 'AIzaSyCaCSJ0BZItSyXqBv8vpD1N4WBffJeKhLQ';
+String mapkey = 'AIzaSyBGjxxqArR6uOgkhasnr1y5hfkTq1WDyrw';
 
 //check internet connection
 
@@ -604,11 +604,10 @@ getUserDetails() async {
         'Authorization': 'Bearer ${bearerToken[0].token}'
       },
     );
-    print("=========>");
+    print("user-info=========>");
     if (response.statusCode == 200) {
       userDetails =
           Map<String, dynamic>.from(jsonDecode(response.body)['data']);
-      inspect(userDetails);
 
       if (userDetails['notifications_count'] != 0 &&
           userDetails['notifications_count'] != null) {
@@ -775,9 +774,13 @@ geoCoding(double lat, double lng) async {
   try {
     var response = await http.get(Uri.parse(
         'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$mapkey'));
-
+    inspect(response);
+    inspect(response.statusCode);
+    inspect(
+        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$mapkey');
     if (response.statusCode == 200) {
       var val = jsonDecode(response.body);
+      inspect(val);
       result = val['results'][0]['formatted_address'];
     } else {
       debugPrint(response.body);
@@ -837,6 +840,9 @@ List addAutoFill = [];
 getAutoAddress(input, sessionToken, lat, lng) async {
   dynamic response;
   var countryCode = userDetails['country_code'];
+  print(
+      'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&library=places&location=$lat%2C$lng&radius=2000&components=country:$countryCode&key=$mapkey&sessiontoken=$sessionToken');
+
   try {
     if (userDetails['enable_country_restrict_on_map'] == '1' &&
         userDetails['country_code'] != null) {

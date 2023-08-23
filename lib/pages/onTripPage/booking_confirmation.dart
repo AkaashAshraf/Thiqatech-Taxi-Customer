@@ -68,7 +68,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
   Location location = Location();
   bool _locationDenied = false;
   bool _isLoading = false;
-  LatLng _center = const LatLng(41.4219057, -102.0840772);
+  LatLng _center = const LatLng(23.6473, 58.1458);
   dynamic pinLocationIcon;
   dynamic pinLocationIcon2;
   dynamic animationController;
@@ -559,6 +559,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                           (route) => false);
                     });
                   }
+
                   if (userRequestData['is_completed'] == 1) {
                     WidgetsBinding.instance.addPostFrameCallback((_) {
                       Navigator.pushAndRemoveUntil(
@@ -1377,6 +1378,8 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                                                       padding: EdgeInsets.all(media.width * 0.02),
                                                                                       child: InkWell(
                                                                                         onTap: () {
+                                                                                          inspect(etaDetails);
+                                                                                          // inspect(etaDetails[i]['typesWithPrice']['data']);
                                                                                           setState(() {
                                                                                             rentalOption = etaDetails[i]['typesWithPrice']['data'];
                                                                                             rentalChoosenOption = i;
@@ -5689,7 +5692,7 @@ class _BookingConfirmationState extends State<BookingConfirmation>
                                                   )
                                                 ],
                                               )))
-                                      : Container()
+                                      : Container(),
                                 ],
                               );
                             });
